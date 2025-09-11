@@ -2,8 +2,11 @@
   "name": "opentwig",
   "version": "1.0.0",
   "description": "opentwig 🌿 is an open source link in bio page generator.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
+    "dev": "tsx watch src/index.tsx",
+    "build": "tsc",
+    "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,5 +20,19 @@
   "bugs": {
     "url": "https://github.com/tufantunc/opentwig/issues"
   },
-  "homepage": "https://github.com/tufantunc/opentwig#readme"
+  "homepage": "https://github.com/tufantunc/opentwig#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.3.1",
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
+    "nodemon": "^3.1.10",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
 }
