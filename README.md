@@ -8,7 +8,7 @@ OpenTwig is an open source personal link page generator that creates beautiful, 
 - 📱 **Mobile Responsive**: Optimized for all devices with mobile-first design
 - 🚀 **Fast & Lightweight**: Generates static HTML/CSS with minimal dependencies
 - 🔗 **Easy Link Management**: Simple JSON configuration for all your links
-- 🖼️ **Avatar Support**: Custom profile pictures with automatic processing
+- 🖼️ **Optional Avatar Support**: Custom profile pictures with automatic processing (completely optional)
 - 📊 **Open Graph Images**: Auto-generated social media preview images
 - 📱 **QR Code Generation**: Built-in QR codes for easy mobile sharing
 - 🎭 **Modal Dialogs**: Support for rich content in footer links
@@ -38,6 +38,7 @@ npx opentwig
 
 OpenTwig uses a simple JSON configuration file (`config.json`) to define your page. Here's the complete configuration structure:
 
+### With Avatar (Optional)
 ```json
 {
   "theme": "default",
@@ -77,6 +78,39 @@ OpenTwig uses a simple JSON configuration file (`config.json`) to define your pa
 }
 ```
 
+### Without Avatar (Minimal Configuration)
+```json
+{
+  "theme": "default",
+  "url": "https://links.yourwebsite.com",
+  "title": "Your Name - opentwig 🌿",
+  "name": "Your Name",
+  "content": "Hello World! Here is my bio.",
+  "minify": true,
+  "links": [
+    {
+      "url": "https://twitter.com",
+      "title": "Twitter"
+    },
+    {
+      "url": "https://instagram.com",
+      "title": "Instagram"
+    }
+  ],
+  "footerLinks": [
+    {
+      "title": "Contact",
+      "url": "mailto:mail@mail.com"
+    }
+  ],
+  "share": {
+    "title": "Your Name - opentwig 🌿",
+    "url": "https://links.yourwebsite.com",
+    "text": "Share"
+  }
+}
+```
+
 ### Configuration Options
 
 | Option | Type | Description |
@@ -87,11 +121,37 @@ OpenTwig uses a simple JSON configuration file (`config.json`) to define your pa
 | `name` | string | Your display name |
 | `content` | string | Bio/description text |
 | `minify` | boolean | Enable CSS minification (default: `true`) |
-| `avatar` | object | Avatar image configuration |
-| `avatar.path` | string | Path to your avatar image |
+| `avatar` | object | **Optional** Avatar image configuration |
+| `avatar.path` | string | **Optional** Path to your avatar image (supports PNG, JPG, JPEG, WebP) |
 | `links` | array | Array of link objects with `url` and `title` |
 | `footerLinks` | array | Footer links (can be URLs or modal dialogs) |
 | `share` | object | Web Share API configuration |
+
+### 🖼️ Avatar Configuration
+
+The avatar feature is completely optional. If you don't include the `avatar` object in your configuration, no avatar will be displayed on your page.
+
+**Supported image formats:**
+- PNG
+- JPG/JPEG  
+- WebP
+
+**Avatar processing:**
+- Images are automatically optimized and resized
+- Processed avatar is saved as `avatar.png` in the output directory
+- Original aspect ratio is preserved
+- Images are compressed for optimal web performance
+
+**Example avatar configuration:**
+```json
+{
+  "avatar": {
+    "path": "./my-photo.jpg"
+  }
+}
+```
+
+**Note:** If you don't want an avatar, simply omit the `avatar` object from your configuration entirely.
 
 ## 🎨 Themes
 
@@ -103,7 +163,7 @@ OpenTwig includes 4 beautiful themes:
 - **Colorful**: Vibrant color scheme
 
 All themes are mobile-responsive and include:
-- Custom avatar display
+- Optional custom avatar display
 - Link buttons with hover effects
 - Modal dialogs for rich content
 - QR code integration
@@ -128,7 +188,7 @@ OpenTwig generates the following files in the `dist/` directory:
 
 - `index.html` - Main HTML page
 - `style.css` - Processed and optimized CSS
-- `avatar.png` - Processed avatar image
+- `avatar.png` - Processed avatar image *(only generated if avatar is configured)*
 - `og-image.jpg` - Open Graph image for social sharing
 - `qr.svg` - QR code for mobile sharing
 

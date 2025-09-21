@@ -17,8 +17,11 @@ module.exports = function(html, css, avatar,ogImage, qrImage) {
         fs.writeFileSync(path.join(distDir, 'style.css'), css);
     }
 
-    if (avatar != null && avatar.path) {
-        fs.copyFileSync(path.join(cwd, avatar.path), path.join(distDir, 'avatar.png'));
+    if (avatar && avatar.path) {
+        // Get the original file extension from the avatar path
+        const originalExtension = path.extname(avatar.path);
+        const avatarFileName = `avatar${originalExtension}`;
+        fs.copyFileSync(path.join(cwd, avatar.path), path.join(distDir, avatarFileName));
     }
 
     // Write the generated OG Image

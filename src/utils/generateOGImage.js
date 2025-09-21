@@ -2,7 +2,7 @@ const sharp = require('sharp');
 const readImageAsBase64 = require('./readImageAsBase64');
 
 module.exports = async function({name, content, avatar}) {
-    const avatarBase64 = readImageAsBase64(avatar.path);
+    const avatarBase64 = avatar && avatar.path ? readImageAsBase64(avatar.path) : null;
     // Create SVG with the same dimensions and styling as the original HTML
     const svg = `
         <svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">

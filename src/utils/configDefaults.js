@@ -16,10 +16,7 @@ const DEFAULT_CONFIG = {
     content: 'Hello World! Here is my bio.',
     url: 'https://links.yourwebsite.com',
     
-    // Avatar settings
-    avatar: {
-        path: './avatar.png'
-    },
+    // Avatar settings - no default, user must explicitly define if they want an avatar
     
     // Links settings
     links: [],
@@ -94,19 +91,15 @@ const SAMPLE_CONFIG = {
 const applyDefaults = (config) => {
     const result = { ...config };
     
-    // Apply defaults for each key
+    // Apply defaults for each key (excluding avatar which has special handling)
     Object.keys(DEFAULT_CONFIG).forEach(key => {
-        if (result[key] === undefined || result[key] === null) {
+        if (key !== 'avatar' && (result[key] === undefined || result[key] === null)) {
             result[key] = DEFAULT_CONFIG[key];
         }
     });
     
-    // Special handling for nested objects
-    if (result.avatar && typeof result.avatar === 'object') {
-        result.avatar = { ...DEFAULT_CONFIG.avatar, ...result.avatar };
-    } else if (!result.avatar) {
-        result.avatar = { ...DEFAULT_CONFIG.avatar };
-    }
+    // Special handling for avatar - no defaults, user must explicitly define
+    // If avatar is undefined, null, false, or an object, leave it as is
     
     if (result.share && typeof result.share === 'object') {
         result.share = { ...DEFAULT_CONFIG.share, ...result.share };
