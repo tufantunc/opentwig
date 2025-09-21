@@ -9,8 +9,8 @@ module.exports = function(filePath) {
 
 	const absolutePath = path.join(cwd, filePath);
 	if (!fs.existsSync(absolutePath)) {
-		console.error(`File not found: ${absolutePath}`);
-		process.exit(1);
+		console.warn(`Avatar file not found: ${absolutePath}. Continuing without avatar.`);
+		return '';
 	}
 
 	const extension = path.extname(absolutePath).toLowerCase();

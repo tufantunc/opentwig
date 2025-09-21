@@ -6,11 +6,18 @@ const postcss = require('postcss');
 const minify = require('postcss-minify');
 
 module.exports = async function(config) {
-    // Check if the theme has a style.css file
-    const cssPath = path.join(cwd, 'theme', config.theme, 'style.css');
-
-    const hasCss = fs.existsSync(cssPath);
-    if (!hasCss) {
+    // Try package directory first (for NPX), then current directory (for local dev)
+    const packageDir = path.dirname(require.main.filename);
+    const currentDir = process.cwd();
+    
+    const cssPaths = [
+        path.join(packageDir, '..', 'theme', config.theme, 'style.css'), // NPX package
+        path.join(currentDir, 'theme', config.theme, 'style.css')         // Local development
+    ];
+    
+    const cssPath = cssPaths.find(p => fs.existsSync(p));
+    
+    if (!cssPath) {
         return null;
     }
 
