@@ -2,37 +2,48 @@
   "name": "opentwig",
   "version": "1.0.0",
   "description": "opentwig 🌿 is an open source link in bio page generator.",
-  "main": "dist/index.js",
+  "main": "src/index.js",
+  "bin": {
+    "opentwig": "./src/index.js"
+  },
   "scripts": {
-    "dev": "tsx watch src/index.tsx",
-    "build": "tsc",
-    "start": "node dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tufantunc/opentwig.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "link-in-bio",
+    "bio-page",
+    "linktree",
+    "landing-page",
+    "static-site",
+    "generator",
+    "cli",
+    "npx",
+    "open-source"
+  ],
+  "author": "Tufan Tunç",
+  "license": "MIT",
   "type": "commonjs",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "preferGlobal": true,
   "bugs": {
     "url": "https://github.com/tufantunc/opentwig/issues"
   },
   "homepage": "https://github.com/tufantunc/opentwig#readme",
   "dependencies": {
-    "express": "^5.1.0",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "autoprefixer": "^10.4.21",
+    "html-minifier": "^4.0.0",
+    "postcss": "^8.5.6",
+    "postcss-minify": "^1.2.0",
+    "qrcode": "^1.5.4",
+    "sharp": "^0.34.4"
   },
-  "devDependencies": {
-    "@types/express": "^5.0.3",
-    "@types/node": "^24.3.1",
-    "@types/react": "^19.1.12",
-    "@types/react-dom": "^19.1.9",
-    "nodemon": "^3.1.10",
-    "tsx": "^4.20.5",
-    "typescript": "^5.9.2"
-  }
+  "browserslist": [
+    "ie 9"
+  ]
 }
