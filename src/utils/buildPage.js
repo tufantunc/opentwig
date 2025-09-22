@@ -20,7 +20,7 @@ const buildPage = async (config) => {
         const theme = loadTheme(config);
         
         // Generate HTML
-        const html = generateHTML(config, theme);
+        const html = await generateHTML(config, theme);
         
         // Process CSS (async)
         const css = await processCSS(config);

@@ -1,14 +1,13 @@
-const htmlMinifier = require('html-minifier');
+const htmlMinifier = require('html-minifier-terser');
 
-module.exports = function(config, theme) {
+module.exports = async function(config, theme) {
     let html = theme(config);
     
     if (config.minify) {
-        const minifiedHtml = htmlMinifier.minify(html, {
+        const minifiedHtml = await htmlMinifier.minify(html, {
             removeComments: true,
             collapseWhitespace: true,
             minifyCSS: true,
-            minifyJS: true
         });
         html = minifiedHtml;
     }

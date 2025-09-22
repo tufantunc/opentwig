@@ -1,6 +1,6 @@
 {
   "name": "opentwig",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "opentwig 🌿 is an open source link in bio page generator.",
   "main": "src/index.js",
   "bin": {
@@ -37,7 +37,7 @@
   "homepage": "https://github.com/tufantunc/opentwig#readme",
   "dependencies": {
     "autoprefixer": "^10.4.21",
-    "html-minifier": "^4.0.0",
+    "html-minifier-terser": "^7.2.0",
     "postcss": "^8.5.6",
     "postcss-minify": "^1.2.0",
     "qrcode": "^1.5.4",
