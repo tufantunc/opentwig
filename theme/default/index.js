@@ -17,7 +17,7 @@ module.exports = function({title, url, name, content, avatar, links, footerLinks
       <meta property="og:title" content="tufantunc | Twitter | Linktree"/>
       <meta property="og:description" content="Merhaba."/>
       <meta property="og:url" content="${url}"/>
-      <meta property="og:image" content="${url}/og-image.png"/>
+      <meta property="og:image" content="${url}/og-image.jpg"/>
     </head>
     <body>
       <div class="app-bg">
