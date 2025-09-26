@@ -1,5 +1,12 @@
 # OpenTwig 🌿
 
+[![npm version](https://img.shields.io/npm/v/opentwig.svg)](https://www.npmjs.com/package/opentwig)
+[![npm downloads](https://img.shields.io/npm/dm/opentwig.svg)](https://www.npmjs.com/package/opentwig)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node.js Version](https://img.shields.io/node/v/opentwig.svg)](https://nodejs.org/)
+[![GitHub stars](https://img.shields.io/github/stars/tufantunc/opentwig.svg)](https://github.com/tufantunc/opentwig/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/tufantunc/opentwig.svg)](https://github.com/tufantunc/opentwig/issues)
+
 OpenTwig is an open source personal link page generator that creates beautiful, customizable "link in bio" pages. Instead of relying on third-party services, users can define their configuration and instantly create a fully functional static site they own and control.
 
 ## ✨ Features
