@@ -26,6 +26,7 @@ const main = async () => {
         
         // Success message
         console.log(CONSTANTS.MESSAGES.PAGE_GENERATED);
+        console.log(CONSTANTS.MESSAGES.SHOWCASE_REMINDER);
         
     } catch (error) {
         console.error(`${CONSTANTS.MESSAGES.ERROR_PREFIX} ${error.message}`);
