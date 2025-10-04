@@ -19,3 +19,14 @@
 - [ ] New feature  
 - [ ] Documentation
 - [ ] Style/theme
+- [ ] Showcase submission
+
+## Showcase Submission (if applicable)
+**Website URL:** 
+<!-- If this is a showcase submission, provide the URL -->
+
+**Theme Used:** 
+<!-- Which theme was used? -->
+
+**Brief Description:** 
+<!-- 1-2 sentence description of the site -->
