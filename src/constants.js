@@ -34,6 +34,7 @@ const CONSTANTS = {
         CONFIG_CREATED: 'Sample config.json created successfully!',
         CONFIG_EDIT_INSTRUCTIONS: 'Edit config.json with your information and run "npx opentwig" to generate your page.',
         PAGE_GENERATED: '🎉 Page generated successfully!',
+        SHOWCASE_REMINDER: '🌟 Don\'t forget to add your site in showcase: https://github.com/tufantunc/opentwig',
         UNKNOWN_OPTION: 'Unknown option:',
         USE_HELP: 'Use --help for usage information.',
         ERROR_PREFIX: '❌ Error:',
