@@ -271,6 +271,34 @@ Since OpenTwig generates static files, you can deploy to any static hosting serv
 - **AWS S3**: Upload files to an S3 bucket
 - **Any web server**: Upload the `dist/` folder to your server
 
+## 🌟 Showcase
+
+Check out these amazing websites created with OpenTwig! These examples showcase sites made with OpenTwig:
+
+### Featured Sites
+
+- **[Tufan Tunç - My Social Links](https://links.tufantunc.com)** - My social links, used default theme with avatar
+
+### Submit Your Site
+
+Have you created a website with OpenTwig? We'd love to showcase it! You can add your site to our showcase in two ways:
+
+1. **Create an Issue** - Use our [showcase submission template](.github/ISSUE_TEMPLATE/showcase_submission.md)
+2. **Submit a Pull Request** - Add your site directly to the showcase section in this README
+
+#### Guidelines for Showcase Submissions
+
+- ✅ Your site must be live and accessible
+- ✅ Use OpenTwig to generate the site
+- ✅ Keep descriptions concise (1-2 sentences max)
+
+#### What We Look For
+
+- Creative use of themes and customization
+- Different use cases (personal, business, portfolio, etc.)
+- Good examples of various configuration options
+- Sites that inspire other users
+
 ## 📝 License
 
 MIT License - see [LICENSE](LICENSE) file for details
@@ -284,6 +312,7 @@ OpenTwig is open source and welcomes contributions from the community! 🎉
 - 🐛 **Report bugs** using our [bug report template](.github/ISSUE_TEMPLATE/bug_report.md)
 - ✨ **Suggest features** through our [feature request template](.github/ISSUE_TEMPLATE/feature_request.md)
 - 📚 **Improve documentation** using our [documentation improvement template](.github/ISSUE_TEMPLATE/documentation_improvement.md)
+- 🌟 **Submit to showcase** using our [showcase submission template](.github/ISSUE_TEMPLATE/showcase_submission.md)
 - 🎨 **Create themes** - add new visual styles and layouts
 - 🔧 **Fix issues** - tackle open issues and improve the codebase
 - 🌍 **Translate** - help translate documentation and content
