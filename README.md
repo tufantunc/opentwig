@@ -162,12 +162,13 @@ The avatar feature is completely optional. If you don't include the `avatar` obj
 
 ## 🎨 Themes
 
-OpenTwig includes 4 beautiful themes:
+OpenTwig includes 5 beautiful themes:
 
 - **Default**: Clean, modern design with subtle shadows and rounded corners
 - **Dark**: Dark mode variant of the default theme
 - **Minimal**: Simplified, minimalist design
 - **Colorful**: Vibrant color scheme
+- **Azure**: Clean gradient design with Azure-inspired colors
 
 All themes are mobile-responsive and include:
 - Optional custom avatar display
@@ -201,14 +202,36 @@ OpenTwig generates the following files in the `dist/` directory:
 
 ## 🔧 Development
 
+### Development Setup
+
+If you want to contribute to OpenTwig or customize it locally:
+
+```bash
+# Clone the repository
+git clone https://github.com/tufantunc/opentwig.git
+cd opentwig
+
+# Install dependencies
+npm install
+
+# Test the CLI
+npm start -- --help
+
+# Create a sample config for testing
+npm start -- --init
+
+# Test the build process
+npm start
+```
+
 ### Project Structure
 
 ```
 opentwig/
 ├── src/
-│   ├── index.js              # Main entry point
+│   ├── index.js              # Main CLI entry point
 │   ├── constants.js          # Application constants
-│   └── utils/                # Utility functions
+│   └── utils/                # Core utilities
 │       ├── buildPage.js      # Page building logic
 │       ├── generateHTML.js   # HTML generation
 │       ├── generateOGImage.js # Open Graph image creation
@@ -222,8 +245,12 @@ opentwig/
 │   │   └── components/      # Reusable components
 │   ├── dark/                # Dark theme
 │   ├── minimal/             # Minimal theme
-│   └── colorful/            # Colorful theme
-└── dist/                    # Generated output
+│   ├── colorful/            # Colorful theme
+│   └── azure/               # Azure theme
+├── .github/                 # GitHub templates
+│   ├── ISSUE_TEMPLATE/      # Issue templates
+│   └── pull_request_template.md # PR template
+└── dist/                    # Generated output (gitignored)
 ```
 
 ### Key Features Implementation
@@ -250,9 +277,43 @@ MIT License - see [LICENSE](LICENSE) file for details
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+OpenTwig is open source and welcomes contributions from the community! 🎉
+
+### Ways to Contribute
+
+- 🐛 **Report bugs** using our [bug report template](.github/ISSUE_TEMPLATE/bug_report.md)
+- ✨ **Suggest features** through our [feature request template](.github/ISSUE_TEMPLATE/feature_request.md)
+- 📚 **Improve documentation** using our [documentation improvement template](.github/ISSUE_TEMPLATE/documentation_improvement.md)
+- 🎨 **Create themes** - add new visual styles and layouts
+- 🔧 **Fix issues** - tackle open issues and improve the codebase
+- 🌍 **Translate** - help translate documentation and content
+
+### Getting Started
+
+1. **Read our [Contributing Guide](CONTRIBUTING.md)** - Complete guide for contributors
+2. **Check our [Code of Conduct](CODE_OF_CONDUCT.md)** - Community guidelines
+3. **Look for `good first issue` labels** - Perfect for newcomers
+4. **Fork, code, and submit a PR** - Standard open source workflow
+
+### Hacktoberfest 2025
+
+🎃 This repository participates in **Hacktoberfest 2025**! 
+
+- Look for issues with `hacktoberfest` and `good first issue` labels
+- Follow our issue and PR templates
+- Make meaningful contributions that benefit the project
+- Review our [Contributing Guide](CONTRIBUTING.md) before starting
+
+### Contributors
+
+We appreciate all contributors! Contributors will be:
+- Listed here (if desired)
+- Mentioned in release notes for significant contributions
+- Given priority for code reviews and feedback
 
 ## 🔗 Links
 
 - [GitHub Repository](https://github.com/tufantunc/opentwig)
 - [NPM Package](https://www.npmjs.com/package/opentwig)
+- [Issues](https://github.com/tufantunc/opentwig/issues)
+- [Discussions](https://github.com/tufantunc/opentwig/discussions)
