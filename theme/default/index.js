@@ -6,16 +6,24 @@ const qrComponent = require('./components/qr');
 const dialogComponent = require('./components/dialog');
 
 module.exports = function({title, url, name, content, avatar, links, footerLinks, share}) {
+  const escapeHTML = (str = '') => String(str).replace(/[&<>"']/g, c => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  }[c]));
+
   return `<!DOCTYPE html>
   <html lang="en">
     <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>${title}</title>
-      <meta name="description" content="${content}">
+      <title>${escapeHTML(title)}</title>
+      <meta name="description" content="${escapeHTML(content)}">
       <link rel="stylesheet" href="./style.css">
-      <meta property="og:title" content="tufantunc | Twitter | Linktree"/>
-      <meta property="og:description" content="Merhaba."/>
+      <meta property="og:title" content="${escapeHTML(title)}"/>
+      <meta property="og:description" content="${escapeHTML(content)}"/>
       <meta property="og:url" content="${url}"/>
       <meta property="og:image" content="${url}/og-image.jpg"/>
     </head>
@@ -28,8 +36,8 @@ module.exports = function({title, url, name, content, avatar, links, footerLinks
 
           <div class="profile">
             ${avatarComponent({avatar})}
-            <div class="name">${name}</div>
-            <div class="tagline">${content}</div>
+            <div class="name">${escapeHTML(name)}</div>
+            <div class="tagline">${escapeHTML(content)}</div>
           </div>
 
           <div class="links">

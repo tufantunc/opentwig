@@ -7,7 +7,8 @@
     "opentwig": "./src/index.js"
   },
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "test-og": "node test-og.js"
   },
   "repository": {
     "type": "git",
