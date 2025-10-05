@@ -4,15 +4,9 @@ const footerLinkComponent = require('./components/footer-link');
 const shareButtonComponent = require('./components/share-button');
 const qrComponent = require('./components/qr');
 const dialogComponent = require('./components/dialog');
+const escapeHTML = require('../../src/utils/escapeHTML');
 
 module.exports = function({title, url, name, content, avatar, links, footerLinks, share}) {
-  const escapeHTML = (str = '') => String(str).replace(/[&<>"']/g, c => ({
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#39;'
-  }[c]));
 
   return `<!DOCTYPE html>
   <html lang="en">
@@ -22,10 +16,10 @@ module.exports = function({title, url, name, content, avatar, links, footerLinks
       <title>${escapeHTML(title)}</title>
       <meta name="description" content="${escapeHTML(content)}">
       <link rel="stylesheet" href="./style.css">
-      <meta property="og:title" content="${escapeHTML(title)}"/>
-      <meta property="og:description" content="${escapeHTML(content)}"/>
-      <meta property="og:url" content="${url}"/>
-      <meta property="og:image" content="${url}/og-image.jpg"/>
+  <meta property="og:title" content="${escapeHTML(title)}"/>
+  <meta property="og:description" content="${escapeHTML(content)}"/>
+  <meta property="og:url" content="${escapeHTML(url)}"/>
+  <meta property="og:image" content="${escapeHTML(url)}/og-image.jpg"/>
     </head>
     <body>
       <div class="app-bg">

@@ -1,35 +1,40 @@
 const fs = require('fs');
 const path = require('path');
-const renderTemplate = require('./theme/default/index');
 
-const html = renderTemplate({
-  title: 'Tom & Jerry <Best Show>',
-  content: `O'Reilly's "Guide" & More`,
-  url: 'https://example.com',
-  name: 'Test User',
-  avatar: '',
+const render = require('./theme/default');
+
+const sample = {
+  title: 'A <Title> & Test "Quote"',
+  url: 'https://example.com/page?arg=1&other=<bad>',
+  name: "O'Connor & Co <dev>",
+  content: 'This is a description with <tags> & special "characters" and \'quotes\'.',
+  avatar: null,
   links: [],
   footerLinks: [],
   share: {}
-});
+};
 
-const outPath = path.resolve(__dirname, 'test-output.html');
-fs.writeFileSync(outPath, html, 'utf8');
-console.log('HTML written to', outPath);
+const out = render(sample);
+const outPath = path.join(__dirname, 'test-output.html');
+fs.writeFileSync(outPath, out);
+console.log('Wrote', outPath);
 
-// Basic checks
-function assert(condition, msg) {
-  if (!condition) {
-    console.error('Assertion failed:', msg);
-    process.exitCode = 1;
-    throw new Error(msg);
+// Basic assertions
+function assertContainsEscaped(haystack, raw, escaped) {
+  if (haystack.includes(raw)) {
+    throw new Error(`Found unescaped string: ${raw}`);
+  }
+  if (!haystack.includes(escaped)) {
+    throw new Error(`Did not find escaped string: ${escaped}`);
   }
 }
 
-assert(html.includes('<title>Tom &amp; Jerry &lt;Best Show&gt;</title>'), 'title not escaped as expected');
-assert(html.includes('<meta name="description" content="O&#39;Reilly&#39;s &quot;Guide&quot; &amp; More">'), 'description not escaped as expected');
-assert(html.includes('<meta property="og:title" content="Tom &amp; Jerry &lt;Best Show&gt;"'), 'og:title not escaped as expected');
-assert(html.includes('<meta property="og:description" content="O&#39;Reilly&#39;s &quot;Guide&quot; &amp; More"'), 'og:description not escaped as expected');
-assert(html.includes('<div class="tagline">O&#39;Reilly&#39;s &quot;Guide&quot; &amp; More</div>'), 'tagline not escaped as expected');
+// Check several values
+assertContainsEscaped(out, '<Title>', '&lt;Title&gt;');
+// URL should have ampersand escaped and angle brackets escaped
+assertContainsEscaped(out, '&other=<bad>', '&amp;other=&lt;bad&gt;');
+assertContainsEscaped(out, "O'Connor", "O&#39;Connor");
+assertContainsEscaped(out, '"Quote"', '&quot;Quote&quot;');
+assertContainsEscaped(out, "<tags>", '&lt;tags&gt;');
 
-console.log('All checks passed.');
+console.log('All assertions passed.');
