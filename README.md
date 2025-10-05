@@ -142,6 +142,7 @@ The avatar feature is completely optional. If you don't include the `avatar` obj
 - PNG
 - JPG/JPEG  
 - WebP
+- SVG
 
 **Avatar processing:**
 - Images are automatically optimized and resized
