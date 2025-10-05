@@ -1,38 +1,59 @@
 const fs = require('fs');
+const CONSTANTS = require('./src/constants');
 
 function validateConfig(config) {
     const errors = [];
 
-   
-    if (!config.name || typeof config.name !== 'string') {
-        errors.push('The "name" field is required and must be a string.');
-    }
-    if (!config.version || typeof config.version !== 'string') {
-        errors.push('The "version" field is required and must be a string.');
+    // Required fields
+    CONSTANTS.REQUIRED_FIELDS.forEach(field => {
+        if (!config[field] || typeof config[field] !== 'string') {
+            errors.push(`The "${field}" field is required and must be a string.`);
+        }
+    });
+
+    // Optional fields
+    if (config.theme && !CONSTANTS.SUPPORTED_THEMES.includes(config.theme)) {
+        errors.push(
+            `Invalid theme "${config.theme}". Supported themes: ${CONSTANTS.SUPPORTED_THEMES.join(', ')}.`
+        );
     }
 
+    if (config.links && !Array.isArray(config.links)) {
+        errors.push('The "links" field must be an array if provided.');
+    }
 
+    if (config.footerLinks && !Array.isArray(config.footerLinks)) {
+        errors.push('The "footerLinks" field must be an array if provided.');
+    }
+
+    if (config.share && typeof config.share !== 'boolean') {
+        errors.push('The "share" field must be a boolean if provided.');
+    }
 
     return errors;
 }
 
 function main() {
     try {
-        const raw = fs.readFileSync('config.json', 'utf-8');
+        const raw = fs.readFileSync(CONSTANTS.CONFIG_FILE, 'utf-8');
         const config = JSON.parse(raw);
         const errors = validateConfig(config);
 
         if (errors.length > 0) {
-            console.error('Validation errors in config.json:');
+            console.error(`${CONSTANTS.MESSAGES.ERROR_PREFIX} Validation errors in config.json:`);
             errors.forEach(e => console.error('- ' + e));
             process.exit(1);
         } else {
-            console.log('config.json is valid!');
+            console.log(`${CONSTANTS.MESSAGES.SUCCESS_PREFIX} config.json is valid!`);
         }
     } catch (err) {
-        console.error('Failed to read or validate config.json:', err.message);
+        console.error(`${CONSTANTS.MESSAGES.ERROR_PREFIX} Failed to read or validate config.json:`, err.message);
         process.exit(1);
     }
 }
 
-main();
+if (require.main === module) {
+    main();
+}
+
+module.exports = validateConfig;

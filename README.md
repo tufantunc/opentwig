@@ -347,19 +347,16 @@ We appreciate all contributors! Contributors will be:
 - [Issues](https://github.com/tufantunc/opentwig/issues)
 - [Discussions](https://github.com/tufantunc/opentwig/discussions)
 
-## Config.json Validation
+## 🔧 Config.json Validation
 
-Before running the build, use the command below to validate your configuration file:
-
+You can validate your configuration file using the CLI option:
 ```bash
-node validateConfig.js
-```
-
-This ensures all required fields are correct and helps prevent build errors.
-
-## Available Commands
-
-- `build` - Compile the project files.
-- `start` - Run the project.
-- `test` - Execute the project tests.
-- `--validate-config`    Validate the config.json file before building.
+npx opentwig --validate-config
+```                                 
+### Available Commands               
+- `--help` - Show usage information  
+- `--init` - Create a sample config.json
+- `--validate-config` - Validate the config.json file
+- `build` - Compile the project files
+- `start` - Run the project
+- `test` - Execute the project tests

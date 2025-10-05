@@ -12,6 +12,9 @@ module.exports = function parseArgs() {
         } else if (CONSTANTS.CLI_OPTIONS.INIT.includes(arg)) {
             createSampleConfig();
             process.exit(0);
+        } else if (CONSTANTS.CLI_OPTIONS.VALIDATE.includes(arg)) {
+            require('../../validateConfig.js');
+            process.exit(0);
         } else {
             console.error(`${CONSTANTS.MESSAGES.UNKNOWN_OPTION} ${arg}`);
             console.error(CONSTANTS.MESSAGES.USE_HELP);
