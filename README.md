@@ -346,3 +346,20 @@ We appreciate all contributors! Contributors will be:
 - [NPM Package](https://www.npmjs.com/package/opentwig)
 - [Issues](https://github.com/tufantunc/opentwig/issues)
 - [Discussions](https://github.com/tufantunc/opentwig/discussions)
+
+## Config.json Validation
+
+Before running the build, use the command below to validate your configuration file:
+
+```bash
+node validateConfig.js
+```
+
+This ensures all required fields are correct and helps prevent build errors.
+
+## Available Commands
+
+- `build` - Compile the project files.
+- `start` - Run the project.
+- `test` - Execute the project tests.
+- `--validate-config`    Validate the config.json file before building.
