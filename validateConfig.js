@@ -26,8 +26,8 @@ function validateConfig(config) {
         errors.push('The "footerLinks" field must be an array if provided.');
     }
 
-    if (config.share && typeof config.share !== 'boolean') {
-        errors.push('The "share" field must be a boolean if provided.');
+    if (config.share && typeof config.share !== 'object') {
+        errors.push('The "share" field must be an object if provided.');
     }
 
     return errors;
@@ -56,4 +56,4 @@ if (require.main === module) {
     main();
 }
 
-module.exports = validateConfig;
+module.exports = main;

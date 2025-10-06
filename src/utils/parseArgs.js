@@ -13,7 +13,7 @@ module.exports = function parseArgs() {
             createSampleConfig();
             process.exit(0);
         } else if (CONSTANTS.CLI_OPTIONS.VALIDATE.includes(arg)) {
-            require('../../validateConfig.js');
+            require('../../validateConfig.js')();
             process.exit(0);
         } else {
             console.error(`${CONSTANTS.MESSAGES.UNKNOWN_OPTION} ${arg}`);
