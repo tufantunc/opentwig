@@ -347,3 +347,17 @@ We appreciate all contributors! Contributors will be:
 - [NPM Package](https://www.npmjs.com/package/opentwig)
 - [Issues](https://github.com/tufantunc/opentwig/issues)
 - [Discussions](https://github.com/tufantunc/opentwig/discussions)
+
+## 🔧 Config.json Validation
+
+You can validate your configuration file using the CLI option:
+```bash
+npx opentwig --validate-config
+```                                 
+### Available Commands               
+- `--help` - Show usage information  
+- `--init` - Create a sample config.json
+- `--validate-config` - Validate the config.json file
+- `build` - Compile the project files
+- `start` - Run the project
+- `test` - Execute the project tests

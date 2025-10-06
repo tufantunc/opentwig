@@ -24,7 +24,8 @@ const CONSTANTS = {
     // CLI options
     CLI_OPTIONS: {
         HELP: ['--help', '-h'],
-        INIT: ['--init', '-i']
+        INIT: ['--init', '-i'],
+        VALIDATE: ['--validate-config']
     },
     
     // Messages
