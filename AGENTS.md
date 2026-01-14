@@ -17,8 +17,10 @@ npm start -- --validate-config  # Validate config.json
 # Test Open Graph image generation
 npm run test-og
 
-# Note: This project does not have automated tests, linting, or type checking configured.
-# Manual testing involves creating a config.json and running npm start.
+# Run automated tests (Vitest)
+npm test                    # Run tests in watch mode
+npm run test:run            # Run tests once
+npm run test:coverage       # Run tests with coverage report
 ```
 
 ## Project Overview
@@ -175,14 +177,20 @@ All generated files go to `dist/` directory:
 
 ## Testing Approach
 
-Since there's no automated test suite:
-1. Manual test by running `npm start -- --init` and `npm start`
-2. Verify `dist/` output files are generated correctly
-3. Test all themes by modifying config.json
-4. Test edge cases: missing avatar, empty config, long text
-5. Verify HTML is valid (open in browser)
-6. Check CSS renders correctly
-7. Confirm images are processed properly
+The project uses Vitest for automated testing:
+1. Run `npm test` to run tests in watch mode
+2. Run `npm run test:run` to run tests once
+3. Run `npm run test:coverage` to run tests with coverage report
+
+For manual testing:
+1. Create a config.json using `npm start -- --init`
+2. Run `npm start` to generate the page
+3. Verify `dist/` output files are generated correctly
+4. Test all themes by modifying config.json
+5. Test edge cases: missing avatar, empty config, long text
+6. Verify HTML is valid (open in browser)
+7. Check CSS renders correctly
+8. Confirm images are processed properly
 
 ## When Making Changes
 

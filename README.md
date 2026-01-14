@@ -164,13 +164,12 @@ The avatar feature is completely optional. If you don't include the `avatar` obj
 
 ## 🎨 Themes
 
-OpenTwig includes 5 beautiful themes:
+OpenTwig includes 4 beautiful themes:
 
 - **Default**: Clean, modern design with subtle shadows and rounded corners
-- **Dark**: Dark mode variant of the default theme
-- **Minimal**: Simplified, minimalist design
-- **Colorful**: Vibrant color scheme
-- **Azure**: Clean gradient design with Azure-inspired colors
+- **Dark**: Dark mode variant of the default theme with gradient backgrounds and glassmorphism effects
+- **Minimal**: Simplified, minimalist design with flat styling
+- **Colorful**: Vibrant color scheme with animated gradients and shimmer effects
 
 All themes are mobile-responsive and include:
 - Optional custom avatar display
@@ -247,8 +246,7 @@ opentwig/
 │   │   └── components/      # Reusable components
 │   ├── dark/                # Dark theme
 │   ├── minimal/             # Minimal theme
-│   ├── colorful/            # Colorful theme
-│   └── azure/               # Azure theme
+│   └── colorful/            # Colorful theme
 ├── .github/                 # GitHub templates
 │   ├── ISSUE_TEMPLATE/      # Issue templates
 │   └── pull_request_template.md # PR template
