@@ -6,6 +6,7 @@
 [![Node.js Version](https://img.shields.io/node/v/opentwig.svg)](https://nodejs.org/)
 [![GitHub stars](https://img.shields.io/github/stars/tufantunc/opentwig.svg)](https://github.com/tufantunc/opentwig/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/tufantunc/opentwig.svg)](https://github.com/tufantunc/opentwig/issues)
+[![Coverage](https://img.shields.io/badge/Coverage-60%25-yellow)]()
 
 OpenTwig is an open source personal link page generator that creates beautiful, customizable "link in bio" pages. Instead of relying on third-party services, users can define their configuration and instantly create a fully functional static site they own and control.
 
