@@ -27,11 +27,12 @@ DESCRIPTION:
     For custom port:
     npx opentwig --live --port 3001
 
-EXAMPLES:
+ EXAMPLES:
     npx opentwig --init          # Create sample config
     npx opentwig --help          # Show this help
     npx opentwig                 # Generate page from config.json
     npx opentwig --live          # Start live preview
+    npx opentwig --live -p 9000   # Live preview on port 9000
     npx opentwig --live --port 3001  # Live preview on port 3001
 
 For more information, visit: https://github.com/tufantunc/opentwig

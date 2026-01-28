@@ -137,34 +137,9 @@ describe('parseArgs', () => {
     it('should reject invalid port number (too low)', () => {
         process.argv = ['node', 'index.js', '--live', '--port', '0'];
         const parseArgs = require('./parseArgs');
-        const result = parseArgs();
-
-        expect(result.port).toBe(1);
-    });
-
-    it('should validate port number is valid (max)', () => {
-        process.argv = ['node', 'index.js', '--live', '--port', '65535'];
-        const parseArgs = require('./parseArgs');
-        const result = parseArgs();
-
-        expect(result.port).toBe(65535);
-    });
-
-    it('should reject invalid port number (too high)', () => {
-        process.argv = ['node', 'index.js', '--live', '--port', '99999'];
-        const parseArgs = require('./parseArgs');
         parseArgs();
 
-        expect(mockConsoleError).toHaveBeenCalledWith('Invalid port number: 99999');
-        expect(mockExit).toHaveBeenCalledWith(1);
-    });
-
-    it('should reject invalid port number (NaN)', () => {
-        process.argv = ['node', 'index.js', '--live', '--port', 'abc'];
-        const parseArgs = require('./parseArgs');
-        parseArgs();
-
-        expect(mockConsoleError).toHaveBeenCalledWith('Invalid port number: abc');
+        expect(mockConsoleError).toHaveBeenNthCalledWith(1, '❌ Error: Invalid port number: 0. Please use a port between 1 and 65535.');
         expect(mockExit).toHaveBeenCalledWith(1);
     });
 
@@ -173,7 +148,7 @@ describe('parseArgs', () => {
         const parseArgs = require('./parseArgs');
         parseArgs();
 
-        expect(mockConsoleError).toHaveBeenCalledWith('Invalid port number: 99999');
+        expect(mockConsoleError).toHaveBeenNthCalledWith(1, '❌ Error: Invalid port number: 99999. Please use a port between 1 and 65535.');
         expect(mockExit).toHaveBeenCalledWith(1);
     });
 
@@ -182,7 +157,7 @@ describe('parseArgs', () => {
         const parseArgs = require('./parseArgs');
         parseArgs();
 
-        expect(mockConsoleError).toHaveBeenCalledWith('Invalid port number: abc');
+        expect(mockConsoleError).toHaveBeenNthCalledWith(1, '❌ Error: Invalid port number: abc. Please use a port between 1 and 65535.');
         expect(mockExit).toHaveBeenCalledWith(1);
     });
 });

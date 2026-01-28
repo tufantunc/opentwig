@@ -30,11 +30,12 @@ module.exports = function parseArgs() {
                 const portNum = parseInt(portValue);
                 if (!isNaN(portNum) && portNum > 0 && portNum < 65536) {
                     parsedArgs.port = portNum;
-                    i++;
                 } else {
                     console.error(`${CONSTANTS.MESSAGES.ERROR_PREFIX} Invalid port number: ${portValue}. Please use a port between 1 and 65535.`);
                     process.exit(1);
                 }
+                i += 2;
+                continue;
             } else {
                 console.error(`${CONSTANTS.MESSAGES.ERROR_PREFIX} Port option requires a value. Usage: --port <PORT> or -p <PORT>`);
                 process.exit(1);
