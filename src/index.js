@@ -6,6 +6,7 @@ const saveFiles = require('./utils/saveFiles');
 const parseArgs = require('./utils/parseArgs');
 const buildPage = require('./utils/buildPage');
 const CONSTANTS = require('./constants');
+const startLiveServer = require('./utils/startLiveServer');
 
 /**
  * Main application function with proper error handling
@@ -13,7 +14,13 @@ const CONSTANTS = require('./constants');
 const main = async () => {
     try {
         // Parse CLI arguments first
-        parseArgs();
+        const args = parseArgs();
+        
+        // Check if live mode is requested
+        if (args.mode === 'live') {
+            await startLiveServer(args.port);
+            return;
+        }
         
         // Load and validate configuration
         const config = loadConfig();
@@ -34,4 +41,8 @@ const main = async () => {
     }
 };
 
-main();
+if (require.main === module) {
+    main();
+}
+
+module.exports = { main };

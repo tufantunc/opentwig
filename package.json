@@ -11,10 +11,12 @@
     "test": "vitest",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "test-og": "node test-og.js"
+    "test-og": "node test-og.js",
+    "live": "node src/index.js --live"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^2.0.0",
+    "baseline-browser-mapping": "^2.9.19",
     "vitest": "^2.0.0"
   },
   "repository": {
@@ -45,11 +47,17 @@
   "homepage": "https://github.com/tufantunc/opentwig#readme",
   "dependencies": {
     "autoprefixer": "^10.4.21",
+    "chokidar": "^5.0.0",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
     "html-minifier-terser": "^7.2.0",
+    "multer": "^2.0.2",
+    "open": "^11.0.0",
     "postcss": "^8.5.6",
     "postcss-minify": "^1.2.0",
     "qrcode": "^1.5.4",
-    "sharp": "^0.34.4"
+    "sharp": "^0.34.4",
+    "ws": "^8.19.0"
   },
   "browserslist": [
     "ie 9"
