@@ -25,7 +25,9 @@ const CONSTANTS = {
     CLI_OPTIONS: {
         HELP: ['--help', '-h'],
         INIT: ['--init', '-i'],
-        VALIDATE: ['--validate-config']
+        VALIDATE: ['--validate-config'],
+        LIVE: ['--live', '-l'],
+        PORT: ['--port', '-p']
     },
     
     // Messages
@@ -52,6 +54,14 @@ const CONSTANTS = {
     DEFAULT_NAME: 'Your Name',
     DEFAULT_CONTENT: 'Hello World! Here is my bio.',
     DEFAULT_URL: 'https://links.yourwebsite.com',
+    
+    // Live Mode settings
+    LIVE_MODE: {
+        PORT: 3000,
+        DEFAULT_HOST: 'localhost',
+        AUTO_SAVE_DELAY: 500,
+        WS_PATH: '/ws'
+    },
     
     // Required fields for validation
     REQUIRED_FIELDS: ['url', 'name']

@@ -35,12 +35,47 @@ npx opentwig --init
 # Edit the generated config.json with your information
 # Then generate your page
 npx opentwig
+
+# Or use live preview with interactive editor
+npx opentwig --live
 ```
 
 ### Prerequisites
 
 - Node.js (v14 or higher)
 - npm or yarn
+
+## 🔥 Live Preview Mode (NEW!)
+
+OpenTwig now includes a powerful live preview mode with an interactive configuration editor!
+
+```bash
+# Start live preview with config editor
+npx opentwig --live
+
+# Or using npm script
+npm run live
+```
+
+**Features:**
+- 🎨 **Interactive Sidebar Editor** - Edit all config options in a beautiful UI
+- 🔄 **Real-time Preview** - See changes instantly as you edit
+- 💾 **Auto-save** - Changes automatically save to config.json
+- 📱 **Responsive Layout** - Preview on the left, editor on the right
+- 🖼️ **Avatar Upload** - Upload and preview avatar images directly
+- 🎭 **Theme Switcher** - Switch between themes instantly
+- 🔗 **Drag & Drop Links** - Easily manage your links
+- 📊 **Status Indicator** - Connection status and auto-save status
+- 📥 **Export Config** - Download your config as JSON
+
+**How it works:**
+1. Run `npx opentwig --live` to start the development server
+2. The browser opens automatically showing your page preview
+3. Use the sidebar editor to modify configuration
+4. Changes are auto-saved to `config.json`
+5. Preview updates in real-time
+6. Press `Ctrl+C` to stop the server
+7. Your `dist/` folder is ready for deployment!
 
 ## 📖 Configuration
 
@@ -189,6 +224,12 @@ npx opentwig --init
 
 # Generate page from config.json
 npx opentwig
+
+# Start live preview with config editor
+npx opentwig --live
+
+# Validate config.json
+npx opentwig --validate-config
 ```
 
 ## 📁 Output Files
@@ -223,6 +264,9 @@ npm start -- --init
 
 # Test the build process
 npm start
+
+# Start live preview mode
+npm run live
 ```
 
 ### Project Structure
@@ -232,12 +276,21 @@ opentwig/
 ├── src/
 │   ├── index.js              # Main CLI entry point
 │   ├── constants.js          # Application constants
+│   ├── live-ui/             # Live preview UI
+│   │   ├── index.html       # Live editor page
+│   │   ├── styles.css      # Live editor styles
+│   │   ├── preview.js      # Preview management
+│   │   ├── editor.js       # Config editor logic
+│   │   └── sidebar.js     # Sidebar components
 │   └── utils/                # Core utilities
 │       ├── buildPage.js      # Page building logic
 │       ├── generateHTML.js   # HTML generation
 │       ├── generateOGImage.js # Open Graph image creation
 │       ├── generateQR.js     # QR code generation
 │       ├── processCSS.js     # CSS processing and optimization
+│       ├── startLiveServer.js # Live preview server
+│       ├── websocketServer.js # WebSocket handling
+│       ├── setupWatcher.js   # Config file watcher
 │       └── ...
 ├── theme/
 │   ├── default/              # Default theme

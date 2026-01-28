@@ -13,6 +13,7 @@ npm start
 npm start -- --help           # Show help information
 npm start -- --init           # Create sample config.json
 npm start -- --validate-config  # Validate config.json
+npm start -- --live            # Start live preview with config editor
 
 # Test Open Graph image generation
 npm run test-og
@@ -21,13 +22,16 @@ npm run test-og
 npm test                    # Run tests in watch mode
 npm run test:run            # Run tests once
 npm run test:coverage       # Run tests with coverage report
+
+# Start live preview mode
+npm run live
 ```
 
 ## Project Overview
 
 OpenTwig is a Node.js CLI tool that generates static "link in bio" pages. It uses CommonJS modules and generates HTML, CSS, QR codes, and Open Graph images from a JSON configuration file.
 
-**Core technologies:** Node.js (v14+), CommonJS, PostCSS, Sharp, qrcode, html-minifier-terser
+**Core technologies:** Node.js (v14+), CommonJS, PostCSS, Sharp, qrcode, html-minifier-terser, Express, WebSocket, Chokidar
 
 ## Code Style Guidelines
 
@@ -154,7 +158,7 @@ module.exports = function({link}) {
 ## Key Files Reference
 
 - `src/index.js` - Main CLI entry point with argument parsing
-- `src/constants.js` - Centralized constants
+- `src/constants.js` - Centralized constants (including LIVE_MODE settings)
 - `src/utils/loadConfig.js` - Load and validate config.json
 - `src/utils/buildPage.js` - Orchestrate page generation
 - `src/utils/generateHTML.js` - HTML generation with minification
@@ -163,6 +167,14 @@ module.exports = function({link}) {
 - `src/utils/generateQR.js` - QR code generation
 - `src/utils/saveFiles.js` - Save all output files to dist/
 - `src/utils/configDefaults.js` - Default values and validation
+- `src/utils/startLiveServer.js` - Live preview server (Express + WebSocket)
+- `src/utils/websocketServer.js` - WebSocket connection management
+- `src/utils/setupWatcher.js` - Config file change watcher
+- `src/live-ui/index.html` - Live editor main page
+- `src/live-ui/styles.css` - Live editor styles
+- `src/live-ui/preview.js` - Preview iframe management
+- `src/live-ui/editor.js` - Config editor logic
+- `src/live-ui/sidebar.js` - Sidebar components and form rendering
 - `theme/*/index.js` - Theme-specific HTML templates
 - `validateConfig.js` - Config validation utility
 
@@ -174,6 +186,115 @@ All generated files go to `dist/` directory:
 - `avatar.{ext}` - User avatar (if configured)
 - `og-image.jpg` - Open Graph preview image
 - `qr.svg` - QR code
+
+## Live Mode Architecture
+
+### Overview
+Live mode (`--live` flag) provides an interactive development environment with real-time preview and configuration editing.
+
+### Components
+
+**Backend (Node.js):**
+- `startLiveServer.js` - Express server with WebSocket support
+  - HTTP endpoints: `/api/config`, `/api/themes`, `/api/avatar`, `/api/validate`
+  - Static file serving for `dist/` and `src/live-ui/`
+  - File upload handling (multer)
+- `websocketServer.js` - WebSocket server for real-time updates
+  - Broadcast events: `reload`, `config-update`, `theme-change`
+  - Client connection management
+- `setupWatcher.js` - Config file watcher
+  - Chokidar-based file watching
+  - Debounced change detection
+  - Auto rebuild on config changes
+
+**Frontend (Vanilla JS):**
+- `index.html` - Main editor page (Preview on left, Sidebar on right)
+- `preview.js` - Preview iframe management and WebSocket client
+- `editor.js` - Config API communication and auto-save
+- `sidebar.js` - Dynamic form generation and event handling
+
+### Features
+
+**Editor Features:**
+- Theme selection (default, dark, minimal, colorful)
+- Profile editing (URL, name, bio, avatar upload)
+- Links management (add, edit, delete, reorder)
+- Footer links management (URL or modal content)
+- Share settings configuration
+- Advanced settings (minify CSS)
+- Auto-save with debounce (500ms)
+- Export config as JSON
+
+**Real-time Updates:**
+- Config changes → WebSocket broadcast → Preview reload
+- File watcher → Rebuild → WebSocket broadcast
+- Avatar upload → Save → Rebuild → Preview update
+
+### Layout
+
+```
+┌─────────────────────────────────────────────┐
+│  Header: OpenTwig Live Editor  [Save][Export] │
+├──────────────────────────────┬──────────────┤
+│                              │              │
+│      Preview Iframe          │   Sidebar    │
+│  (dist/index.html embedded) │              │
+│                              │  - Theme     │
+│                              │  - Profile   │
+│                              │  - Links     │
+│                              │  - Footer    │
+│                              │  - Share     │
+│                              │  - Advanced  │
+│                              │              │
+├──────────────────────────────┴──────────────┤
+│  Status: Connected | Auto-save: ON         │
+└─────────────────────────────────────────────┘
+```
+
+### WebSocket Events
+
+**Server → Client:**
+```json
+{
+  "type": "reload"
+}
+
+{
+  "type": "config-update",
+  "config": { ... }
+}
+
+{
+  "type": "theme-change",
+  "theme": "dark"
+}
+```
+
+**API Endpoints:**
+
+**GET /api/config**
+- Returns current config from config.json
+- Creates sample config if not exists
+
+**POST /api/config**
+- Accepts config JSON
+- Validates and saves to config.json
+- Triggers rebuild and WebSocket broadcast
+
+**POST /api/avatar**
+- Accepts multipart form data with avatar file
+- Saves to working directory
+- Returns file path
+
+**GET /api/themes**
+- Returns array of available theme names
+
+**GET /api/validate?config=...**
+- Validates config JSON
+- Returns errors and warnings
+
+**GET /api/status**
+- Returns server status (connected clients, config path, etc.)
 
 ## Testing Approach
 
