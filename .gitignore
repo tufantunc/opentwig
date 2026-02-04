@@ -119,8 +119,4 @@ logs
 *.log
 
 # Other generated files
-*.jpg
-*.png
-*.svg
-*.html
-*.css
+dist/*

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenTwig Live Editor</title>
+    <link rel="stylesheet" href="/live-ui/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="header-left">
+                <h1>🌿 OpenTwig Live Editor</h1>
+                <span class="status-indicator" id="statusIndicator">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Connecting...</span>
+                </span>
+            </div>
+            <div class="header-right">
+                <button class="btn btn-primary" id="saveBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                        <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                        <polyline points="7 3 7 8 15 8"></polyline>
+                    </svg>
+                    Save
+                </button>
+                <button class="btn btn-secondary" id="exportBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Export
+                </button>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="preview-container">
+                <div class="preview-toolbar">
+                    <span class="preview-title">Preview</span>
+                    <button class="refresh-btn" id="refreshBtn" title="Refresh preview">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="23 4 23 10 17 10"></polyline>
+                            <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="preview-frame">
+                    <iframe id="previewFrame" src="/index.html" title="Preview"></iframe>
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <h2>Configuration</h2>
+                    <button class="toggle-sidebar" id="toggleSidebar" title="Toggle sidebar">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="sidebar-content">
+                    <div class="config-section" id="configForm">
+                        <!-- Dynamic form content will be injected here -->
+                    </div>
+                </div>
+
+                <div class="sidebar-footer">
+                    <div class="auto-save-toggle">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="autoSave" checked>
+                            <span class="slider"></span>
+                        </label>
+                        <span>Auto-save</span>
+                    </div>
+                    <div class="last-saved">
+                        Last saved: <span id="lastSaved">Never</span>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <div class="notification-container" id="notificationContainer"></div>
+    </div>
+
+    <script src="/live-ui/preview.js"></script>
+    <script src="/live-ui/editor.js"></script>
+    <script src="/live-ui/sidebar.js"></script>
+</body>
+</html>
