@@ -383,6 +383,8 @@ const renderShareSection = (container, config) => {
     
     const shareUrlGroup = createFormGroup('Share URL', '', config.share.url, 'text', (value) => {
         config.share.url = value;
+        // Sync with main URL so QR code updates correctly
+        config.url = value;
         window.configEditor.updateConfig(config);
         window.configEditor.autoSave(config);
         return [];

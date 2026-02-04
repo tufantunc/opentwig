@@ -2,19 +2,19 @@ import { describe, it, expect } from 'vitest';
 
 describe('generateOGImage', () => {
     it('should be a function', () => {
-        const generateOGImage = require('./generateOGImage');
+        const generateOGImage = require('../../src/utils/generateOGImage');
         expect(typeof generateOGImage).toBe('function');
     });
 
     it('should return a promise', () => {
-        const generateOGImage = require('./generateOGImage');
+        const generateOGImage = require('../../src/utils/generateOGImage');
         const config = { name: 'Test', content: 'Content' };
         const result = generateOGImage(config);
         expect(result).toBeInstanceOf(Promise);
     });
 
     it('should accept config parameter', async () => {
-        const generateOGImage = require('./generateOGImage');
+        const generateOGImage = require('../../src/utils/generateOGImage');
         const config = { name: 'Test', content: 'Content' };
         
         try {

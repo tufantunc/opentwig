@@ -166,6 +166,7 @@ window.configEditor = {
     loadConfig,
     saveConfig,
     autoSave,
+    validateField,
     currentConfig: () => currentConfig,
     updateConfig: (newConfig) => {
         currentConfig = newConfig;

@@ -12,10 +12,10 @@ const setupWatcher = (configPath, wss, onConfigChange) => {
     let watcher = null;
     let isPaused = false;
     
-    const handleConfigChange = debounce(async (event, path) => {
+    const handleConfigChange = debounce(async (path) => {
         if (isPaused) return;
         
-        console.log(`Config file changed: ${event} ${path}`);
+        console.log(`Config file changed: ${path}`);
         
         try {
             if (onConfigChange) {

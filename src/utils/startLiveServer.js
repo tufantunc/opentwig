@@ -50,22 +50,22 @@ const startLiveServer = async (customPort) => {
         }
     });
     
-    app.post('/api/config', (req, res) => {
+    app.post('/api/config', async (req, res) => {
         try {
             const newConfig = req.body;
             currentConfig = applyDefaults(newConfig);
             
             fs.writeFileSync(configPath, JSON.stringify(currentConfig, null, 4));
             
-            buildPage(currentConfig).then(({ html, css, ogImage, qrImage }) => {
-                saveFiles(html, css, currentConfig.avatar, ogImage, qrImage);
-                wss.broadcastConfigUpdate(currentConfig);
-            }).catch(error => {
-                console.error('Error building page:', error);
-            });
+            const { html, css, ogImage, qrImage } = await buildPage(currentConfig);
+            saveFiles(html, css, currentConfig.avatar, ogImage, qrImage);
             
             res.json({ success: true, config: currentConfig });
+            
+            // Broadcast reload after files are saved
+            wss.broadcastReload();
         } catch (error) {
+            console.error('Error building page:', error);
             res.status(500).json({ error: error.message });
         }
     });
@@ -201,7 +201,10 @@ const startLiveServer = async (customPort) => {
     
     const watcher = setupWatcher(configPath, wss, async (changedPath) => {
         try {
-            currentConfig = loadConfig();
+            // Read config directly from file to avoid require cache issues
+            const configContent = fs.readFileSync(configPath, 'utf8');
+            const fileConfig = JSON.parse(configContent);
+            currentConfig = applyDefaults(fileConfig);
             await buildPage(currentConfig);
             console.log('Page rebuilt from config change');
         } catch (error) {

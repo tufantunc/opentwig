@@ -3,7 +3,7 @@ import { describe, it, expect, vi } from 'vitest';
 describe('showHelp', () => {
   it('should output help text with OpenTwig branding', () => {
     const mockLog = vi.spyOn(console, 'log').mockImplementation(() => {});
-    const showHelp = require('./showHelp');
+    const showHelp = require('../../src/utils/showHelp');
     showHelp();
     expect(mockLog).toHaveBeenCalled();
     const output = mockLog.mock.calls[0][0];
@@ -14,7 +14,7 @@ describe('showHelp', () => {
 
   it('should include usage information', () => {
     const mockLog = vi.spyOn(console, 'log').mockImplementation(() => {});
-    const showHelp = require('./showHelp');
+    const showHelp = require('../../src/utils/showHelp');
     showHelp();
     const output = mockLog.mock.calls[0][0];
     expect(output).toContain('USAGE');
@@ -23,7 +23,7 @@ describe('showHelp', () => {
 
   it('should include examples', () => {
     const mockLog = vi.spyOn(console, 'log').mockImplementation(() => {});
-    const showHelp = require('./showHelp');
+    const showHelp = require('../../src/utils/showHelp');
     showHelp();
     const output = mockLog.mock.calls[0][0];
     expect(output).toContain('EXAMPLES');

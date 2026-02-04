@@ -5,6 +5,7 @@ const shareButtonComponent = require('./components/share-button');
 const qrComponent = require('./components/qr');
 const dialogComponent = require('./components/dialog');
 const escapeHTML = require('../../src/utils/escapeHTML');
+const { getFaviconDataURI } = require('../../src/utils/favicon');
 
 module.exports = function({title, url, name, content, avatar, links, footerLinks, share}) {
 
@@ -20,6 +21,7 @@ module.exports = function({title, url, name, content, avatar, links, footerLinks
   <meta property="og:description" content="${escapeHTML(content)}"/>
   <meta property="og:url" content="${escapeHTML(url)}"/>
   <meta property="og:image" content="${escapeHTML(url)}/og-image.jpg"/>
+  <link rel="icon" type="image/svg+xml" href="${getFaviconDataURI()}">
     </head>
     <body>
       <div class="app-bg">

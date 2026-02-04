@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { DEFAULT_CONFIG, SAMPLE_CONFIG, applyDefaults } from './configDefaults';
+import { DEFAULT_CONFIG, SAMPLE_CONFIG, applyDefaults } from '../../src/utils/configDefaults';
 
 describe('configDefaults', () => {
   describe('DEFAULT_CONFIG', () => {

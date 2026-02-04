@@ -2,12 +2,12 @@ import { describe, it, expect } from 'vitest';
 
 describe('loadConfig', () => {
     it('should be a function', () => {
-        const loadConfig = require('./loadConfig');
+        const loadConfig = require('../../src/utils/loadConfig');
         expect(typeof loadConfig).toBe('function');
     });
 
     it('should return an object', () => {
-        const loadConfig = require('./loadConfig');
+        const loadConfig = require('../../src/utils/loadConfig');
         
         try {
             const result = loadConfig();

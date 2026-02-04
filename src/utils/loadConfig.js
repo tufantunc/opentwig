@@ -11,7 +11,9 @@ module.exports = function() {
         process.exit(1);
     }
     
-    const config = require(configPath);
+    // Use fs.readFileSync instead of require to avoid caching issues
+    const configContent = fs.readFileSync(configPath, 'utf8');
+    const config = JSON.parse(configContent);
     
     // Apply default values to the loaded configuration
     return applyDefaults(config);

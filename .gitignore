@@ -18,6 +18,9 @@ pids
 coverage/
 *.lcov
 
+# Vitest coverage
+coverage/
+
 # nyc test coverage
 .nyc_output
 
@@ -109,6 +112,7 @@ config.json
 
 # Test output
 test-output/
+test-output.html
 
 # Logs
 logs

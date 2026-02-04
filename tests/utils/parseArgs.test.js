@@ -23,7 +23,7 @@ describe('parseArgs', () => {
 
     it('should output help text with OpenTwig branding', () => {
         process.argv = ['node', 'index.js', '--help'];
-        const parseArgs = require('./parseArgs');
+        const parseArgs = require('../../src/utils/parseArgs');
         parseArgs();
 
         expect(mockConsoleLog).toHaveBeenCalled();
@@ -34,7 +34,7 @@ describe('parseArgs', () => {
 
     it('should output help with usage information', () => {
         process.argv = ['node', 'index.js', '--help'];
-        const parseArgs = require('./parseArgs');
+        const parseArgs = require('../../src/utils/parseArgs');
         parseArgs();
 
         expect(mockConsoleLog).toHaveBeenCalled();
@@ -45,7 +45,7 @@ describe('parseArgs', () => {
 
     it('should include examples', () => {
         process.argv = ['node', 'index.js', '--help'];
-        const parseArgs = require('./parseArgs');
+        const parseArgs = require('../../src/utils/parseArgs');
         parseArgs();
 
         expect(mockConsoleLog).toHaveBeenCalled();
@@ -55,7 +55,7 @@ describe('parseArgs', () => {
 
     it('should exit with code 0 when --help is passed', () => {
         process.argv = ['node', 'index.js', '--help'];
-        const parseArgs = require('./parseArgs');
+        const parseArgs = require('../../src/utils/parseArgs');
         parseArgs();
 
         expect(mockExit).toHaveBeenCalledWith(0);
@@ -63,7 +63,7 @@ describe('parseArgs', () => {
 
     it('should include --port option in help', () => {
         process.argv = ['node', 'index.js', '--help'];
-        const parseArgs = require('./parseArgs');
+        const parseArgs = require('../../src/utils/parseArgs');
         parseArgs();
 
         expect(mockConsoleLog).toHaveBeenCalled();
@@ -74,7 +74,7 @@ describe('parseArgs', () => {
 
     it('should include examples with --port', () => {
         process.argv = ['node', 'index.js', '--help'];
-        const parseArgs = require('./parseArgs');
+        const parseArgs = require('../../src/utils/parseArgs');
         parseArgs();
 
         expect(mockConsoleLog).toHaveBeenCalled();
@@ -85,7 +85,7 @@ describe('parseArgs', () => {
 
     it('should parse --port argument correctly', () => {
         process.argv = ['node', 'index.js', '--live', '--port', '8080'];
-        const parseArgs = require('./parseArgs');
+        const parseArgs = require('../../src/utils/parseArgs');
         const result = parseArgs();
 
         expect(result.mode).toBe('live');
@@ -94,7 +94,7 @@ describe('parseArgs', () => {
 
     it('should parse -p argument correctly', () => {
         process.argv = ['node', 'index.js', '--live', '-p', '9000'];
-        const parseArgs = require('./parseArgs');
+        const parseArgs = require('../../src/utils/parseArgs');
         const result = parseArgs();
 
         expect(result.mode).toBe('live');
@@ -103,7 +103,7 @@ describe('parseArgs', () => {
 
     it('should return null port when not specified', () => {
         process.argv = ['node', 'index.js', '--live'];
-        const parseArgs = require('./parseArgs');
+        const parseArgs = require('../../src/utils/parseArgs');
         const result = parseArgs();
 
         expect(result.mode).toBe('live');
@@ -112,7 +112,7 @@ describe('parseArgs', () => {
 
     it('should validate port number is valid', () => {
         process.argv = ['node', 'index.js', '--live', '--port', '3000'];
-        const parseArgs = require('./parseArgs');
+        const parseArgs = require('../../src/utils/parseArgs');
         const result = parseArgs();
 
         expect(result.port).toBe(3000);
@@ -120,7 +120,7 @@ describe('parseArgs', () => {
 
     it('should validate port number is valid (min)', () => {
         process.argv = ['node', 'index.js', '--live', '--port', '1'];
-        const parseArgs = require('./parseArgs');
+        const parseArgs = require('../../src/utils/parseArgs');
         const result = parseArgs();
 
         expect(result.port).toBe(1);
@@ -128,7 +128,7 @@ describe('parseArgs', () => {
 
     it('should validate port number is valid (max)', () => {
         process.argv = ['node', 'index.js', '--live', '--port', '65535'];
-        const parseArgs = require('./parseArgs');
+        const parseArgs = require('../../src/utils/parseArgs');
         const result = parseArgs();
 
         expect(result.port).toBe(65535);
@@ -136,7 +136,7 @@ describe('parseArgs', () => {
 
     it('should reject invalid port number (too low)', () => {
         process.argv = ['node', 'index.js', '--live', '--port', '0'];
-        const parseArgs = require('./parseArgs');
+        const parseArgs = require('../../src/utils/parseArgs');
         parseArgs();
 
         expect(mockConsoleError).toHaveBeenNthCalledWith(1, '❌ Error: Invalid port number: 0. Please use a port between 1 and 65535.');
@@ -145,7 +145,7 @@ describe('parseArgs', () => {
 
     it('should reject invalid port number (too high)', () => {
         process.argv = ['node', 'index.js', '--live', '--port', '99999'];
-        const parseArgs = require('./parseArgs');
+        const parseArgs = require('../../src/utils/parseArgs');
         parseArgs();
 
         expect(mockConsoleError).toHaveBeenNthCalledWith(1, '❌ Error: Invalid port number: 99999. Please use a port between 1 and 65535.');
@@ -154,7 +154,7 @@ describe('parseArgs', () => {
 
     it('should reject invalid port number (NaN)', () => {
         process.argv = ['node', 'index.js', '--live', '--port', 'abc'];
-        const parseArgs = require('./parseArgs');
+        const parseArgs = require('../../src/utils/parseArgs');
         parseArgs();
 
         expect(mockConsoleError).toHaveBeenNthCalledWith(1, '❌ Error: Invalid port number: abc. Please use a port between 1 and 65535.');

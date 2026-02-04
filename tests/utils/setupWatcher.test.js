@@ -2,18 +2,18 @@ import { describe, it, expect } from 'vitest';
 
 describe('setupWatcher', () => {
     it('should be a function', () => {
-        const setupWatcher = require('./setupWatcher');
+        const setupWatcher = require('../../src/utils/setupWatcher');
         expect(typeof setupWatcher).toBe('function');
     });
 
     it('should accept configPath, wss, and callback parameters', () => {
-        const setupWatcher = require('./setupWatcher');
+        const setupWatcher = require('../../src/utils/setupWatcher');
         const params = setupWatcher.length;
         expect(params).toBe(3);
     });
 
     it('should return an object with control functions', () => {
-        const setupWatcher = require('./setupWatcher');
+        const setupWatcher = require('../../src/utils/setupWatcher');
         const mockWSServer = { broadcastReload: () => {} };
         const callback = () => {};
         

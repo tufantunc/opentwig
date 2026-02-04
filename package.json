@@ -1,6 +1,6 @@
 {
   "name": "opentwig",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "opentwig 🌿 is an open source link in bio page generator.",
   "main": "src/index.js",
   "bin": {
@@ -11,7 +11,6 @@
     "test": "vitest",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "test-og": "node test-og.js",
     "live": "node src/index.js --live"
   },
   "devDependencies": {

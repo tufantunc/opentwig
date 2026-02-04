@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import escapeHTML from './escapeHTML';
+import escapeHTML from '../../src/utils/escapeHTML';
 
 describe('escapeHTML', () => {
   it('should escape ampersand character', () => {
